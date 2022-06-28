@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.GenerateReport">
    <children>
-      <TreeTableView prefHeight="400.0" prefWidth="604.0">
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="600.0">
         <columns>
-          <TreeTableColumn fx:id="fname_col" prefWidth="174.40003049373627" text="First Name" />
-          <TreeTableColumn fx:id="lname_col" prefWidth="112.79998779296875" text="Last Name" />
-            <TreeTableColumn fx:id="balance_col" prefWidth="132.800048828125" text="Balance" />
-            <TreeTableColumn fx:id="number_col" prefWidth="183.99996948242188" text="Number Of Orders" />
+          <TableColumn fx:id="name" prefWidth="123.20001220703125" text="ProductName" />
+          <TableColumn fx:id="price" prefWidth="98.39996337890625" text="Price" />
+            <TableColumn fx:id="remainder" prefWidth="98.39996337890625" text="Remaining" />
+            <TableColumn fx:id="sold" prefWidth="98.39996337890625" text="Sold" />
+            <TableColumn fx:id="income" prefWidth="180.0" text="Total Income" />
         </columns>
-      </TreeTableView>
+      </TableView>
    </children>
 </AnchorPane>

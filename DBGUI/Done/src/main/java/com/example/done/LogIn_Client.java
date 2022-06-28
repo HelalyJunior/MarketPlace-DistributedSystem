@@ -58,7 +58,7 @@ public class LogIn_Client extends testjdbc{
             rs = ps.executeQuery();
             if ( (rs.getString(1).trim()).equals(Password_txt.getText().trim()))
             {
-                root = FXMLLoader.load(getClass().getResource("Admin-Auth.fxml"));
+                root = FXMLLoader.load(getClass().getResource("Client-Auth.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
