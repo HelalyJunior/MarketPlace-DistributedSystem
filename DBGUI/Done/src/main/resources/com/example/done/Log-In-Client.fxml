@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.LogIn_Client">
+    <children>
+        <TextField fx:id="Username_txt" layoutX="376.0" layoutY="123.0" promptText="Username" />
+        <Label fx:id="username_lbl" layoutX="107.0" layoutY="127.0" text="Username" />
+        <Label fx:id="password_lbl" layoutX="107.0" layoutY="250.0" text="Password" />
+        <Button fx:id="back_btn" layoutX="527.0" layoutY="345.0" mnemonicParsing="false" onAction="#Back_pressed" text="Back" />
+        <PasswordField fx:id="Password_txt" layoutX="376.0" layoutY="246.0" promptText="Password" />
+        <Button fx:id="Login_btn" layoutX="274.0" layoutY="305.0" mnemonicParsing="false" onAction="#Login_Pressed" text="Login" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.WelcomePage">
+   <children>
+      <Button fx:id="Admin_Btn" layoutX="90.0" layoutY="187.0" mnemonicParsing="false" onAction="#Admin_Pressed" prefHeight="26.0" prefWidth="125.0" text="Admin" />
+      <Button fx:id="Client_Btn" layoutX="422.0" layoutY="187.0" mnemonicParsing="false" onAction="#Client_Pressed" prefHeight="26.0" prefWidth="125.0" text="Client" />
+      <Label fx:id="Welcome_label" alignment="CENTER" layoutX="216.0" layoutY="83.0" prefHeight="18.0" prefWidth="205.0" text="Welcome To Our Market! &lt;3" textAlignment="CENTER" />
+   </children>
+</AnchorPane>
