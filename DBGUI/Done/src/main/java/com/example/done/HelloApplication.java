@@ -12,8 +12,8 @@ public class HelloApplication extends Application {
     public static Client client;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome-Page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Shop.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1315, 810);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

@@ -8,15 +8,15 @@ import java.net.Socket;
 
 
 public class Client {
-    public  Socket socket;
-    public  BufferedReader input;
+    public  static Socket socket;
+    public  static BufferedReader input;
     public  PrintWriter output;
     public Client() throws IOException {
         socket=new Socket("localhost",2022);
         input =new BufferedReader(new InputStreamReader(socket.getInputStream()));
          output=new PrintWriter(socket.getOutputStream(),true);
     }
-    /*public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws IOException {
          socket=new Socket("localhost",2022);
          input =new BufferedReader(new InputStreamReader(socket.getInputStream()));
         BufferedReader terminal=new BufferedReader(new InputStreamReader(System.in));
@@ -34,5 +34,5 @@ public class Client {
         }
         socket.close();
 
-    }*/
+    }
 }

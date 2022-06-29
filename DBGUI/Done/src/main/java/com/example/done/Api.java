@@ -77,7 +77,6 @@ public class Api
             }
         }
     }
-
     public static List<Map<String, String>> getAllItems()
     {
         PreparedStatement ps;

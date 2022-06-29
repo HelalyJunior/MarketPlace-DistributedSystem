@@ -7,7 +7,7 @@ public class testjdbc {
     public static Connection connect(){
         Connection con = null;
         try{
-            String url = "jdbc:sqlite:src/DB/MarketPlace.db";
+            String url = "jdbc:sqlite:DBGUI/Done/src/DB/MarketPlace.db";
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection(url); //connecting to our database
             System.out.println("Connected!");
@@ -25,7 +25,7 @@ public class testjdbc {
         Connection conn = null;
         try {
 
-            String url = "jdbc:sqlite:src/DB/MarketPlace.db";
+            String url = "jdbc:sqlite:DBGUI/Done/src/DB/MarketPlace.db";
             conn = DriverManager.getConnection(url);
             Statement s = conn.createStatement();
 

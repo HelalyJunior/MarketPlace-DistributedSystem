@@ -14,28 +14,31 @@ public class Server {
     private PrintWriter output;
     private BufferedReader input;
     private static ArrayList<ClientHandler> clients;
-    private static ExecutorService pool= Executors.newFixedThreadPool(10);
+    private static ExecutorService pool = Executors.newFixedThreadPool(10);
+
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        while(true) {
+        while (true) {
             Socket clientSocket = serverSocket.accept();
-            ClientHandler clientHandler=new ClientHandler(clientSocket);
+            ClientHandler clientHandler = new ClientHandler(clientSocket);
             pool.execute(clientHandler);
         }
 
 
     }
+
     public void stop() throws IOException {
         input.close();
         output.close();
 
         serverSocket.close();
     }
-  public static void main(String[] args) throws IOException {
-      Server server = new Server();
-      server.start(2022);
-  }
-      }
+
+    public static void main(String[] args) throws IOException {
+        Server server = new Server();
+        server.start(2022);
+    }
+}
 
 
 
