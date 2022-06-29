@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,8 +50,11 @@ public class LogIn_Client extends testjdbc{
 
     public void Login_Pressed(javafx.event.ActionEvent event) throws IOException, SQLException
     {
-        String password = Api.getPassword("client",Username_txt.getText().trim());
-        if ( password.equals(Password_txt.getText().trim()))
+       HelloApplication.client.output.println("login_"+Username_txt.getText().trim()+"_"+Password_txt.getText().trim());
+
+        //String password = Api.getPassword("client",Username_txt.getText().trim());
+
+        if ( HelloApplication.client.input.readLine().equals("true"))
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Client-Auth.fxml"));
             root = loader.load();
@@ -66,5 +70,6 @@ public class LogIn_Client extends testjdbc{
             AlertBox.display("Error","Wrong Password! ");
             Password_txt.setText("");
         }
+
     }
 }
