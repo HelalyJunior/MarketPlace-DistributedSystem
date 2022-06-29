@@ -122,47 +122,49 @@ public class SignUp extends testjdbc{
 //        }
 
 
+        PreparedStatement ps;
+        ResultSet rs;
+        Connection c = connect();
+        int balance = Api.getBalance("moazahmedm");
+        String s2 = String.format("SELECT Price,Stock FROM PRODUCTS WHERE ID = %d ",2);
+        try {
+            System.out.println(s2);
+            ps = c.prepareStatement(s2);
+            rs = ps.executeQuery();
+            int price =(rs.getInt("Price"))* 10;
+            int stock =rs.getInt("Stock");
+            if (price <= balance){
+                if (50<=stock) {
+                    Api.AddToCart("moazahmedm",2) ;
+                    String s3 = String.format("UPDATE PRODUCTS SET Stock=Stock- %d , Sold = Sold + %d WHERE ID = %d ", 10, 10,2);
+                    //s3 += String.format(";UPDATE CLIENTS SET Balance = Balance - %d WHERE Username = \"%s\"",price,"moazahmedm");
+                    String s4 = String.format("UPDATE CLIENTS SET Balance = Balance - %d WHERE Username = \"%s\"",price,"moazahmedm");
+                    ps = c.prepareStatement(s3);
+                    ps.executeUpdate();
+                    ps = c.prepareStatement(s4);
+                    ps.executeUpdate();
+                    System.out.println("success");
+                }
+                System.out.println("fail");
+            }
+            else {
+                System.out.println("fail");
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            System.out.println("fail");
+        }
+        finally {
+            try {
+                c.close();
+            }
+            catch (Exception e)
+            {
 
-//        PreparedStatement ps;
-//        ResultSet rs;
-//        Connection c = connect();
-//        int balance = Api.getBalance("moazahmedm");
-//        String s2 = String.format("SELECT Price,Stock FROM PRODUCTS WHERE ID = %d ",2);
-//        try {
-//            System.out.println(s2);
-//            ps = c.prepareStatement(s2);
-//            rs = ps.executeQuery();
-//            int price =(rs.getInt("Price"))* 10;
-//            int stock =rs.getInt("Stock");
-//            if (price <= balance){
-//                if (50<=stock) {
-//                    Api.AddToCart("moazahmedm",2) ;
-//                    String s3 = String.format("UPDATE PRODUCTS SET Stock=Stock- %d , Sold = Sold + %d WHERE ID = %d ", 10, 10,2);
-//                    s3 += String.format(";UPDATE CLIENTS SET Balance = Balance - %d WHERE Username = \"%s\"",price,"moazahmedm");
-//                    ps = c.prepareStatement(s3);
-//                    ps.executeUpdate();
-//                    System.out.println("success");
-//                }
-//                System.out.println("fail");
-//            }
-//            else {
-//                System.out.println("fail");
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println(e);
-//            System.out.println("fail");
-//        }
-//        finally {
-//            try {
-//                c.close();
-//            }
-//            catch (Exception e)
-//            {
-//
-//            }
-        //}
+            }
+        }
 
 
     }

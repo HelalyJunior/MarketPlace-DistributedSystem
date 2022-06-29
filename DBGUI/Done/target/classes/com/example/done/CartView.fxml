@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="589.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.CartView">
+   <children>
+      <SplitPane dividerPositions="0.724829931972789" orientation="VERTICAL" prefHeight="589.0" prefWidth="875.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="874.0">
+               <children>
+                  <HBox layoutX="67.0" layoutY="14.0" prefHeight="48.0" prefWidth="550.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="48.0" prefWidth="588.0" text="Current Shopping Cart">
+                           <font>
+                              <Font name="Berlin Sans FB" size="37.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+                  <ScrollPane layoutX="2.0" layoutY="70.0" prefHeight="376.0" prefWidth="866.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="864.0">
+                           <children>
+                              <TableView prefHeight="376.0" prefWidth="866.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="Item" />
+                                  <TableColumn prefWidth="75.0" text="Quantity" />
+                                    <TableColumn prefWidth="75.0" text="Item Price" />
+                                    <TableColumn prefWidth="75.0" text="Total " />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="81.0" prefWidth="874.0">
+               <children>
+                  <HBox layoutX="-2.0" prefHeight="134.0" prefWidth="874.0">
+                     <children>
+                        <VBox prefHeight="134.0" prefWidth="470.0">
+                           <children>
+                              <HBox prefHeight="67.0" prefWidth="263.0">
+                                 <children>
+                                    <Label prefHeight="51.0" prefWidth="206.0" text="Delievery address:">
+                                       <font>
+                                          <Font name="Bodoni MT" size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="51.0" prefWidth="237.0" text="address">
+                                       <font>
+                                          <Font name="Bodoni MT" size="22.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="66.0" prefWidth="368.0">
+                                 <children>
+                                    <Label prefHeight="84.0" prefWidth="175.0" text="Total price:">
+                                       <font>
+                                          <Font name="Bodoni MT" size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="85.0" prefWidth="308.0" text="500$">
+                                       <font>
+                                          <Font name="Bodoni MT" size="22.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="134.0" prefWidth="405.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="178.0" text="Purchase ">
+                                 <VBox.margin>
+                                    <Insets bottom="50.0" left="130.0" right="50.0" top="50.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Bodoni MT" size="26.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
