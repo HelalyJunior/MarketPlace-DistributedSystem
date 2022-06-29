@@ -2,15 +2,18 @@ package com.example.done;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class ClientAuth {
+public class ClientAuth  {
     @FXML
     private Button deposit_btn;
 
@@ -24,7 +27,6 @@ public class ClientAuth {
     public  Label welcome_lbl;
 
     public String username;
-
 
     public void shop_pressed(ActionEvent event)
     {

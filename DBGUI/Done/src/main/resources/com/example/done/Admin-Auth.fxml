@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.Admin_Auth">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.Admin_Auth">
    <children>
-      <Button fx:id="Generate_btn" layoutX="59.0" layoutY="70.0" mnemonicParsing="false" onAction="#Generate_Pressed" text="Generate Report" />
-      <Button fx:id="Top_btn" layoutX="59.0" layoutY="200.0" mnemonicParsing="false" onAction="#Top_Pressed" text="Top Clients" />
+      <ImageView fitHeight="374.0" fitWidth="610.0" layoutX="67.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/undraw_Select_option_re_u4qn.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Generate_btn" layoutX="165.0" layoutY="175.0" mnemonicParsing="false" onAction="#Generate_Pressed" prefHeight="54.0" prefWidth="154.0" style="-fx-background-color: #793bff;" text="Generate Report" textFill="WHITE">
+         <font>
+            <Font name="Alef Regular" size="17.0" />
+         </font></Button>
+      <Button fx:id="Top_btn" layoutX="177.0" layoutY="240.0" mnemonicParsing="false" onAction="#Top_Pressed" prefHeight="46.0" prefWidth="129.0" style="-fx-background-color: #793bff;" text="Top Clients" textFill="WHITE">
+         <font>
+            <Font name="Alef Regular" size="17.0" />
+         </font></Button>
    </children>
 </AnchorPane>

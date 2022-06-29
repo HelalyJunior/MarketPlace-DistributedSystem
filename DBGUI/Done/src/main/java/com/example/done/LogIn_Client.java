@@ -60,6 +60,7 @@ public class LogIn_Client extends testjdbc{
             root = loader.load();
             ClientAuth clientController = loader.getController();
             clientController.username=Username_txt.getText().trim();
+            clientController.welcome_lbl.setText("Welcome "+ clientController.username);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

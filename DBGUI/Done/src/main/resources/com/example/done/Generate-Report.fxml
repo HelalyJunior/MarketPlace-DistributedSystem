@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.GenerateReport">
    <children>
-      <TableView fx:id="table" prefHeight="400.0" prefWidth="600.0">
+      <TableView fx:id="table" layoutX="21.0" layoutY="14.0" prefHeight="327.0" prefWidth="557.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="123.20001220703125" text="ProductName" />
           <TableColumn fx:id="price" prefWidth="98.39996337890625" text="Price" />
@@ -15,5 +17,9 @@
             <TableColumn fx:id="income" prefWidth="180.0" text="Total Income" />
         </columns>
       </TableView>
+      <Button layoutX="21.0" layoutY="347.0" mnemonicParsing="false" onAction="#Back_pressed" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #793bff;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Alef Regular" size="17.0" />
+         </font></Button>
    </children>
 </AnchorPane>
