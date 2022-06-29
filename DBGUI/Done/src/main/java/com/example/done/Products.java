@@ -3,19 +3,22 @@ package com.example.done;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Store {
+public class Products {
     public SimpleStringProperty product_name;
     public SimpleIntegerProperty price;
     public SimpleIntegerProperty remaining;
     public SimpleIntegerProperty sold;
     public SimpleIntegerProperty income;
 
-    public Store(String product_name, int price, int remaining, int sold, int income) {
+    public Products(String product_name, int price, int remaining, int sold, int income) {
         this.product_name = new SimpleStringProperty(product_name);
         this.price = new SimpleIntegerProperty(price);
         this.remaining = new SimpleIntegerProperty(remaining);
         this.sold = new SimpleIntegerProperty(sold);
         this.income = new SimpleIntegerProperty(income);
+    }
+    public Products() {
+
     }
 
 

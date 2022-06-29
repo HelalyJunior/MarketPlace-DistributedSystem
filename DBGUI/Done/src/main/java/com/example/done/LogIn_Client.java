@@ -39,9 +39,6 @@ public class LogIn_Client extends testjdbc{
     @FXML
     private Label username_lbl;
 
-    PreparedStatement ps;
-    ResultSet rs;
-    Connection c = connect();
     public void Back_pressed(javafx.event.ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("Welcome-Page.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -50,32 +47,24 @@ public class LogIn_Client extends testjdbc{
         stage.show();
     }
 
-    public void Login_Pressed(javafx.event.ActionEvent event) throws IOException, SQLException {
-        String s1 = "SELECT PW FROM Clients WHERE Username = '"+Username_txt.getText().trim()+"'";
-
-        try {
-            ps = c.prepareStatement(s1);
-            rs = ps.executeQuery();
-            if ( (rs.getString(1).trim()).equals(Password_txt.getText().trim()))
-            {
-                root = FXMLLoader.load(getClass().getResource("Client-Auth.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-            else
-            {
-                AlertBox.display("Error","Wrong Password!");
-                Password_txt.setText("");
-            }
-        }
-        catch (Exception e)
+    public void Login_Pressed(javafx.event.ActionEvent event) throws IOException, SQLException
+    {
+        String password = Api.getPassword("client",Username_txt.getText().trim());
+        if ( password.equals(Password_txt.getText().trim()))
         {
-            AlertBox.display("Error","Wrong Username");
-            Username_txt.setText("");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Client-Auth.fxml"));
+            root = loader.load();
+            ClientAuth clientController = loader.getController();
+            clientController.username=Username_txt.getText().trim();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            AlertBox.display("Error","Wrong Password! ");
             Password_txt.setText("");
         }
-
     }
 }

@@ -13,22 +13,22 @@ import java.util.ResourceBundle;
 
 public class contro implements Initializable {
     @FXML
-    private TableColumn<Store , Integer> income;
+    private TableColumn<Products, Integer> income;
 
     @FXML
-    private TableColumn<Store, String > name;
+    private TableColumn<Products, String > name;
 
     @FXML
-    private TableColumn<Store, Integer> price;
+    private TableColumn<Products, Integer> price;
 
     @FXML
-    private TableColumn<Store, Integer> remainder;
+    private TableColumn<Products, Integer> remainder;
 
     @FXML
-    private TableColumn<Store, Integer> sold;
+    private TableColumn<Products, Integer> sold;
 
     @FXML
-    private TableView<Store> table;
+    private TableView<Products> table;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,9 +40,9 @@ public class contro implements Initializable {
         table.setItems(data);
     }
 
-    ObservableList<Store> data = FXCollections.observableArrayList(
-            new Store("Banana",20,35,200,2000),
-            new Store("Apples",10,30,400,10000),
-            new Store("Pizza",70,15,150,2132)
+    ObservableList<Products> data = FXCollections.observableArrayList(
+            new Products("Banana",20,35,200,2000),
+            new Products("Apples",10,30,400,10000),
+            new Products("Pizza",70,15,150,2132)
     );
 }

@@ -15,15 +15,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Admin_Auth extends testjdbc {
+
     private Stage stage;
 
     private Scene scene;
 
     private Parent root;
 
-    PreparedStatement ps;
-    ResultSet rs;
-    Connection c = connect();
     @FXML
     private Button Generate_btn;
 
@@ -43,7 +41,12 @@ public class Admin_Auth extends testjdbc {
 
     }
 
-    public void Top_Pressed(javafx.event.ActionEvent event) {
+    public void Top_Pressed(javafx.event.ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("Generate-Report.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 }
