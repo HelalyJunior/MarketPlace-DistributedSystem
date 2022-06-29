@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.Shop">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -104,6 +103,11 @@
                            <VBox.margin>
                               <Insets bottom="30.0" top="30.0" />
                            </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" prefHeight="46.0" prefWidth="106.0" text="Back">
+                           <font>
+                              <Font name="Alef Regular" size="19.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
