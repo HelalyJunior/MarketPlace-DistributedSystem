@@ -176,18 +176,21 @@ public class ClientHandler implements Runnable {
         this.output.println(s);
     }
     public void search(String[] request){
-        ArrayList<String> items = Api.Search(request[1]);
+        List<Map<String, String>> maps= Api.Search(request[1]);
         StringBuffer s = new StringBuffer();
-        if (!items.isEmpty()) {
-            for (int i = 0; i < items.size(); i++) {
-                s.append(items.get(i) + "_");
-            }
+        if (!maps.isEmpty()) {
+            maps.stream().flatMap(m -> m.entrySet().stream()).forEach(e -> s.append(e.getValue() + "_"));
+//        if (!items.isEmpty()) {
+//            for (int i = 0; i < items.size(); i++) {
+//                s.append(items.get(i) + "_");
+//            }
+//        }
         }
         // in case of no item found !!
         else {
             s.append("NO SUCH ITEM");
         }
-        this.output.println(s);
+          this.output.println(s);
     }
 //    public void buyItem(String[] request){
 //        int id=Integer.parseInt(request[2]);

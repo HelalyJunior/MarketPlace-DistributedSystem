@@ -485,21 +485,28 @@ return true;
         }
     }
 
-    public static ArrayList<String> Search(String searchItem) {
+    public static List<Map<String, String>> Search(String searchItem) {
 
         PreparedStatement ps;
         ResultSet rs;
         Connection c = connect();
-        String s1 = String.format("SELECT ProductName FROM PRODUCTS WHERE Category = \"%s\" OR ProductName=\"%s\"", searchItem, searchItem);
+        String s1 = String.format("SELECT * FROM PRODUCTS WHERE Category = \"%s\" OR ProductName=\"%s\"", searchItem, searchItem);
         System.out.println(s1);
         try {
             ps = c.prepareStatement(s1);
             rs = ps.executeQuery();
-            ArrayList<String> items = new ArrayList<String>();
+            List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+            ResultSetMetaData meta = rs.getMetaData();
             while (rs.next()) {
-                items.add(rs.getString("ProductName"));
+                Map map = new HashMap();
+                for (int i = 1; i <= meta.getColumnCount(); i++) {
+                    String key = meta.getColumnName(i);
+                    String value = rs.getString(key);
+                    map.put(key, value);
+                }
+                list.add(map);
             }
-            return items;
+            return list;
         } catch (Exception e) {
             return null;
         } finally {
