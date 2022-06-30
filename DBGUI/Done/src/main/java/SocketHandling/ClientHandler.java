@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+
 
 
 public class ClientHandler implements Runnable {
@@ -173,6 +175,20 @@ public class ClientHandler implements Runnable {
         maps.stream().flatMap(m->m.entrySet().stream()).forEach(e-> s.append(e.getValue()+"_"));
         this.output.println(s);
     }
+    public void search(String[] request){
+        ArrayList<String> items = Api.Search(request[1]);
+        StringBuffer s = new StringBuffer();
+        if (!items.isEmpty()) {
+            for (int i = 0; i < items.size(); i++) {
+                s.append(items.get(i) + "_");
+            }
+        }
+        // in case of no item found !!
+        else {
+            s.append("NO SUCH ITEM");
+        }
+        this.output.println(s);
+    }
 //    public void buyItem(String[] request){
 //        int id=Integer.parseInt(request[2]);
 //        int q=Integer.parseInt(request[3]);
@@ -233,6 +249,9 @@ public class ClientHandler implements Runnable {
                 }
                 else if ("buy".equalsIgnoreCase(request[0])){
                     purchase(request);
+                }
+                else if ("search".equalsIgnoreCase(request[0])){
+                    search(request);
                 }
 
 //                if ("hello server".equals(line)) {

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import static com.example.done.testjdbc.connect;
 
 public class Api
@@ -480,6 +481,32 @@ return true;
             catch (Exception e)
             {
                 System.out.println(e);
+            }
+        }
+    }
+
+    public static ArrayList<String> Search(String searchItem) {
+
+        PreparedStatement ps;
+        ResultSet rs;
+        Connection c = connect();
+        String s1 = String.format("SELECT ProductName FROM PRODUCTS WHERE Category = \"%s\" OR ProductName=\"%s\"", searchItem, searchItem);
+        System.out.println(s1);
+        try {
+            ps = c.prepareStatement(s1);
+            rs = ps.executeQuery();
+            ArrayList<String> items = new ArrayList<String>();
+            while (rs.next()) {
+                items.add(rs.getString("ProductName"));
+            }
+            return items;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            try {
+                c.close();
+            } catch (Exception e) {
+
             }
         }
     }
