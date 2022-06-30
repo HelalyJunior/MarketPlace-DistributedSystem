@@ -1,24 +1,18 @@
 package com.example.done;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +20,6 @@ import java.util.ResourceBundle;
 
 public class Shop implements Initializable
 {
-    private Stage stage;
-
-    private Scene scene;
-
-    private Parent root;
-    public String username;
     @FXML
     private Label ProductName_lbl;
 
@@ -51,20 +39,40 @@ public class Shop implements Initializable
 
     private List<Product_Card> cards = new ArrayList<>();
 
+    private MyListener myListener;
+
+    private void setChosenItemCard(Product_Card p1)
+    {
+        ProductName_lbl.setText(p1.getName());
+        ProductPrice_lbl.setText(""+p1.getPrice());
+        chosenItemCard.setStyle("-fx-background-color: #" + p1.getColor() + ";\n" +
+                "    -fx-background-radius: 30;");
+        //Product_img.setImage(new Image(getClass().getResourceAsStream(p1.getImgSrc())));
+
+
+    }
+
     private List<Product_Card> getData()
     {
         List<Product_Card> cc = new ArrayList<>();
         Product_Card card;
-        for (int i = 0 ; i < 20 ; i++)
+        for (int i = 0 ; i <  60; i++)
         {
             card = new Product_Card();
-            card.setName("Tea");
+            card.setName("Eggs");
             card.setPrice(20);
-            card.setImgSrc("DBGUI/Done/src/DB/eggs_110803370_1000.jpg   ");
+            card.setImgSrc("DBGUI/Done/src/main/resources/com/example/done/IMG/71Js4WUmcRL._SL1500_.jpg");
             card.setColor("6A7324");
             cc.add(card);
 
         }
+        card = new Product_Card();
+        card.setName("Tuna");
+        card.setPrice(200);
+        card.setImgSrc("DBGUI/Done/src/DB/eggs_110803370_1000.jpg");
+        card.setColor("6A7324");
+        cc.add(card);
+
         return cc;
 
     }
@@ -72,6 +80,18 @@ public class Shop implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cards.addAll(getData());
+        setChosenItemCard(cards.get(0));
+        if (cards.size() > 0)
+        {
+
+            myListener = new MyListener() {
+                @Override
+                public void onClick(Product_Card product_card) {
+
+                    setChosenItemCard(product_card);
+                }
+            };
+        }
         int row = 1;
         int col = 0;
         try {
@@ -83,7 +103,7 @@ public class Shop implements Initializable
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 Product_Controller product_controller = fxmlLoader.getController();
-                product_controller.setData(cards.get(i));
+                product_controller.setData(cards.get(i),myListener);
                 if (col == 3)
                 {
                     col = 0;
@@ -94,6 +114,10 @@ public class Shop implements Initializable
                 grid_pane.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid_pane.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid_pane.setMaxWidth(Region.USE_PREF_SIZE);
+                grid_pane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid_pane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid_pane.setMaxHeight(Region.USE_PREF_SIZE);
+
                 GridPane.setMargin(anchorPane,new Insets(10));
 
 
@@ -108,17 +132,5 @@ public class Shop implements Initializable
 
 
 
-    }
-
-    public void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Client-Auth.fxml"));
-        root = loader.load();
-        ClientAuth clientController = loader.getController();
-        clientController.username=username;
-        clientController.welcome_lbl.setText("Welcome "+ clientController.username);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 }

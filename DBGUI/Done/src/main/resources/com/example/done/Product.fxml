@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="215.0" prefWidth="225.0" stylesheets="@views.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.Product_Controller">
    <children>
-      <VBox alignment="CENTER" layoutX="63.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="63.0" layoutY="14.0" onMousePressed="#click" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="58.0" prefWidth="226.0">
                <children>
@@ -30,7 +29,7 @@
             </HBox>
             <ImageView fx:id="img" fitHeight="115.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@IMG/71Js4WUmcRL._SL1500_.jpg" />
+                  <Image url="@IMG/eggs_110803370_1000.jpg" />
                </image>
             </ImageView>
          </children>

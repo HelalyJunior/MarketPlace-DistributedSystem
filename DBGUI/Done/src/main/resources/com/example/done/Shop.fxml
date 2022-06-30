@@ -10,10 +10,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -104,11 +104,6 @@
                               <Insets bottom="30.0" top="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#back" prefHeight="46.0" prefWidth="106.0" text="Back">
-                           <font>
-                              <Font name="Alef Regular" size="19.0" />
-                           </font>
-                        </Button>
                      </children>
                   </VBox>
                </children>
@@ -137,12 +132,12 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll_pane" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@views.css">
+                        <ScrollPane fx:id="scroll_pane" prefHeight="645.0" prefWidth="873.0" styleClass="transparent" stylesheets="@views.css">
                            <content>
                               <GridPane fx:id="grid_pane" prefHeight="40.0" prefWidth="73.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
                               </GridPane>
                            </content>
                         </ScrollPane>
