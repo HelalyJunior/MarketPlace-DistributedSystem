@@ -34,12 +34,12 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="864.0" style="-fx-background-color: white;">
                            <children>
-                              <TableView prefHeight="376.0" prefWidth="866.0">
+                              <TableView fx:id="table" prefHeight="376.0" prefWidth="866.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Item" />
-                                  <TableColumn prefWidth="75.0" text="Quantity" />
-                                    <TableColumn prefWidth="75.0" text="Item Price" />
-                                    <TableColumn prefWidth="75.0" text="Total " />
+                                  <TableColumn fx:id="item_col" prefWidth="220.80004888772964" text="Item" />
+                                  <TableColumn fx:id="quantity_col" prefWidth="127.99996948242188" text="Quantity" />
+                                    <TableColumn fx:id="price_col" prefWidth="294.39996337890625" text="Item Price" />
+                                    <TableColumn fx:id="total_col" prefWidth="221.60001220703123" text="Total " />
                                 </columns>
                               </TableView>
                            </children>
@@ -67,21 +67,8 @@
                         </ImageView>
                         <VBox prefHeight="153.0" prefWidth="618.0">
                            <children>
-                              <HBox prefHeight="69.0" prefWidth="412.0">
+                              <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="412.0">
                                  <children>
-                                    <Label prefHeight="51.0" prefWidth="206.0" text="Delievery address:" textFill="#6629e1">
-                                       <font>
-                                          <Font name="Alef Regular" size="20.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <Label prefHeight="51.0" prefWidth="218.0" text="address">
-                                       <font>
-                                          <Font name="Alef Regular" size="20.0" />
-                                       </font>
-                                    </Label>
                                     <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="182.0" style="-fx-background-color: #793bff;" text="Clear" textFill="WHITE">
                                        <font>
                                           <Font name="Alef Regular" size="22.0" />
@@ -99,18 +86,18 @@
                                           <Font name="Alef Regular" size="20.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="10.0" />
+                                          <Insets bottom="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label prefHeight="85.0" prefWidth="308.0" text="500$">
+                                    <Label fx:id="totalAmount" prefHeight="85.0" prefWidth="308.0" text="500$">
                                        <font>
                                           <Font name="Alef Regular" size="20.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="-20.0" />
+                                          <Insets bottom="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="201.0" style="-fx-background-color: #793bff;" text="Purchase " textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#purchase_pressed" prefHeight="52.0" prefWidth="201.0" style="-fx-background-color: #793bff;" text="Purchase " textFill="WHITE">
                                        <font>
                                           <Font name="Alef Regular" size="22.0" />
                                        </font>

@@ -58,10 +58,6 @@ public class GenerateReport implements Initializable {
 
     public static void FetchingData(String s)
     {
-//        new Products(rs.get(i).get("ProductName"), Integer.valueOf(rs.get(i).get("Price")),
-//                Integer.valueOf(rs.get(i).get("Stock")), Integer.valueOf(rs.get(i).get("Sold")), total_income)
-//
-//        int total_income = (Integer.valueOf(rs.get(i).get("Price")) * Integer.valueOf(rs.get(i).get("Sold")));
         data =  FXCollections.observableArrayList();
         String[] sb = s.split(",");
         for(int i=0;i<sb.length;i++)

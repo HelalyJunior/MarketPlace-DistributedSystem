@@ -1,11 +1,16 @@
 package com.example.done;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -13,6 +18,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +28,15 @@ import java.util.ResourceBundle;
 
 public class Shop implements Initializable
 {
+
+    private Stage stage;
+
+    private Scene scene;
+
+    private Parent root;
+
+    public Product_Card chosenCard = new Product_Card();
+
     @FXML
     private Label ProductName_lbl;
 
@@ -37,12 +54,19 @@ public class Shop implements Initializable
     @FXML
     private ScrollPane scroll_pane;
 
-    private List<Product_Card> cards = new ArrayList<>();
+    @FXML
+    private TextField quantity;
+
+    public static List<Product_Card> cards = new ArrayList<>();
 
     private MyListener myListener;
 
+    public String username;
+
     private void setChosenItemCard(Product_Card p1)
     {
+        quantity.setText("0");
+        chosenCard=p1;
         ProductName_lbl.setText(p1.getName());
         ProductPrice_lbl.setText(""+p1.getPrice());
         chosenItemCard.setStyle("-fx-background-color: #" + p1.getColor() + ";\n" +
@@ -52,34 +76,28 @@ public class Shop implements Initializable
 
     }
 
-    private List<Product_Card> getData()
+    public static void getData(String s )
     {
+        String[] sb = s.split(",");
         List<Product_Card> cc = new ArrayList<>();
         Product_Card card;
-        for (int i = 0 ; i <  60; i++)
+        for (int i = 0 ; i <  sb.length; i++)
         {
+            String[] st = sb[i].split("_");
             card = new Product_Card();
-            card.setName("Eggs");
-            card.setPrice(20);
+            card.setId(Integer.valueOf(st[0]));
+            card.setName(st[1]);
+            card.setPrice(Integer.valueOf(st[2]));
+            card.setStock(Integer.valueOf(st[3]));
             card.setImgSrc("DBGUI/Done/src/main/resources/com/example/done/IMG/71Js4WUmcRL._SL1500_.jpg");
             card.setColor("6A7324");
             cc.add(card);
-
         }
-        card = new Product_Card();
-        card.setName("Tuna");
-        card.setPrice(200);
-        card.setImgSrc("DBGUI/Done/src/DB/eggs_110803370_1000.jpg");
-        card.setColor("6A7324");
-        cc.add(card);
-
-        return cc;
-
+        cards.addAll(cc);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cards.addAll(getData());
         setChosenItemCard(cards.get(0));
         if (cards.size() > 0)
         {
@@ -132,5 +150,77 @@ public class Shop implements Initializable
 
 
 
+    }
+
+    public void back(ActionEvent event) throws IOException
+    {
+        cards.clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Client-Auth.fxml"));
+        root = loader.load();
+        ClientAuth clientController = loader.getController();
+        clientController.username=username;
+        clientController.welcome_lbl.setText("Welcome "+ clientController.username);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void cart_pressed(ActionEvent event) throws IOException {
+        HelloApplication.client.output.println("getCart_"+username);
+
+        String s = HelloApplication.client.input.readLine();
+        if( s.length()>0)
+        {
+            CartView.FetchingData(s);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CartView.fxml"));
+            root = loader.load();
+            CartView clientController = loader.getController();
+            clientController.username=username;
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            AlertBox.display("Error" , "Your Cart is Empty!");
+        }
+    }
+
+    public void add_pressed(ActionEvent event)
+    {
+        if(Integer.valueOf(quantity.getText())==0)
+        {
+            AlertBox.display("Error","Please Enter a valid quantity ");
+            return;
+        }
+        HelloApplication.client.output.println("add_"+username+"_"+chosenCard.getId()+"_"+quantity.getText());
+    }
+
+    public void decr_pressed(ActionEvent event)
+    {
+        if(Integer.valueOf(quantity.getText())>0)
+        {
+            quantity.setText("" + Integer.valueOf(Integer.valueOf(quantity.getText())-1));
+        }
+        else
+        {
+            AlertBox.display("Error","Invalid Quantity !");
+
+        }
+    }
+
+    public void incr_pressed(ActionEvent event)
+    {
+        if(Integer.valueOf(quantity.getText())<chosenCard.getStock())
+        {
+            quantity.setText("" + Integer.valueOf(Integer.valueOf(quantity.getText())+1));
+        }
+        else
+        {
+            AlertBox.display("Error","Quantity exceeded Stock ! ");
+
+        }
     }
 }

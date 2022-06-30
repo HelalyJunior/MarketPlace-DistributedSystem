@@ -6,6 +6,26 @@ public class Product_Card {
     private int price;
     private String color;
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int stock;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int id;
+
     public String getName() {
         return name;
     }

@@ -43,27 +43,20 @@ public class ClientAuth  {
 
     public void shop_pressed(ActionEvent event) throws IOException
     {
-//        List<Map<String, String>> rs=Api.getCart(username);
-//        try{
-//            for(int i=0;i< rs.size();i++)
-//            {
-//                System.out.println(rs.get(i).get("ProductName"));
-//                System.out.println(rs.get(i).get("Price"));
-//            }
-//        }
-//
-//        catch(Exception e)
-//        {
-//            System.out.println(e);
-//        }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Shop.fxml"));
-        root = loader.load();
-        Shop clientController = loader.getController();
-        clientController.username=username;
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        HelloApplication.client.output.println("shop_");
+        String s = HelloApplication.client.input.readLine();
+        if(s.length()>0)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Shop.fxml"));
+            Shop.getData(s);
+            root = loader.load();
+            Shop clientController = loader.getController();
+            clientController.username=username;
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void display_pressed(ActionEvent event) throws IOException {

@@ -10,6 +10,7 @@ public class Products {
     public SimpleIntegerProperty sold;
     public SimpleIntegerProperty income;
 
+
     public Products(String product_name, int price, int remaining, int sold, int income) {
         this.product_name = new SimpleStringProperty(product_name);
         this.price = new SimpleIntegerProperty(price);

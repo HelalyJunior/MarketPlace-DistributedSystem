@@ -114,11 +114,11 @@ public class Api
         }
     }
 
-    public static void AddToCart(String username,int productId)
+    public static void AddToCart(String username,int productId,int amount)
     {
         PreparedStatement ps;
         Connection c = connect();
-        String s1 = String.format("INSERT INTO Cart values(\"%s\",%d,%d)",username,productId,1);
+        String s1 = String.format("INSERT INTO Cart values(\"%s\",%d,%d)",username,productId,amount);
         System.out.println(s1);
 
 
@@ -301,36 +301,126 @@ public class Api
         }
     }
 
-    public static boolean buy (String username,int productID , int quantity){
+
+    //    public static boolean buy (String username,int productID , int quantity){
+//        PreparedStatement ps;
+//        ResultSet rs;
+//        Connection c = connect();
+//        int balance = getBalance(username);
+//        String s2 = String.format("SELECT Price,Stock FROM PRODUCTS WHERE ID = %d " ,productID);
+//        try {
+//            System.out.println(s2);
+//            ps = c.prepareStatement(s2);
+//            rs = ps.executeQuery();
+//            int price =(rs.getInt("Price"))* quantity;
+//            int stock =rs.getInt("Stock");
+//            if (price <= balance){
+//                if (quantity<=stock) {
+//                    AddToCart(username, productID);
+//                    String s3 = String.format("UPDATE PRODUCTS,CLIENTS SET Stock=Stock- %d , Sold = Sold + %d ,Balance = Balance - %d WHERE ID = %d AND Username = \"%s\"", quantity, quantity, price ,productID,username);
+//                    ps = c.prepareStatement(s3);
+//                    ps.executeUpdate();
+//                    return true;
+//                }
+//                return false;
+//            }
+//            else {
+//                return false;
+//            }
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(e);
+//            return false;
+//        }
+//        finally {
+//            try {
+//                c.close();
+//            }
+//            catch (Exception e)
+//            {
+//
+//            }
+//        }
+//
+//
+//    }
+
+    public static boolean buy (String username,int totalAmount){
         PreparedStatement ps;
         ResultSet rs;
         Connection c = connect();
         int balance = getBalance(username);
-        String s2 = String.format("SELECT Price,Stock FROM PRODUCTS WHERE ID = %d " ,productID);
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        ArrayList<Integer> amounts = new ArrayList<Integer>();
+
+
+        if(balance<totalAmount)
+        {
+            return false;
+        }
+        List<Map<String, String>> cart = getCart(username);
+
+        for(int i=0;i<cart.size();i++)
+        {
+            if(Integer.valueOf(cart.get(i).get("amount"))>Integer.valueOf(cart.get(i).get("Stock")))
+            {
+                return false;
+            }
+            ids.add(Integer.valueOf(cart.get(i).get("Id")));
+            amounts.add(Integer.valueOf(cart.get(i).get("amount")));
+
+        }
+
+        //Update Products
+        for(int i=0;i<cart.size();i++)
+        {
+            String s2 = String.format("UPDATE Products SET Stock = Stock-%d , Sold=Sold+%d WHERE Id=%d" ,amounts.get(i),amounts.get(i),ids.get(i));
+            try {
+                ps = c.prepareStatement(s2);
+                ps.executeUpdate();
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+                return false;
+            }
+        }
         try {
-            System.out.println(s2);
-            ps = c.prepareStatement(s2);
-            rs = ps.executeQuery();
-            int price =(rs.getInt("Price"))* quantity;
-            int stock =rs.getInt("Stock");
-            if (price <= balance){
-                if (quantity<=stock) {
-                    AddToCart(username, productID);
-                    String s3 = String.format("UPDATE PRODUCTS,CLIENTS SET Stock=Stock- %d , Sold = Sold + %d ,Balance = Balance - %d WHERE ID = %d AND Username = \"%s\"", quantity, quantity, price ,productID,username);
-                    ps = c.prepareStatement(s3);
-                    ps.executeUpdate();
-                    return true;
-                }
-                return false;
-            }
-            else {
-                return false;
-            }
+            c.close();
         }
         catch (Exception e)
         {
             System.out.println(e);
-            return false;
+        }
+
+        //Clear Cart
+        Api.clearAll(username);
+
+        //Update balance
+        Api.addBalance(username,-totalAmount);
+
+        // Update Orders
+
+        updateOrders(username,totalAmount);
+return true;
+
+
+    }
+
+
+    public static void updateOrders(String username,int totalAmount)
+    {
+        PreparedStatement ps;
+        Connection c = connect();
+        String s1 = String.format("INSERT INTO Orders(ClientName,Total_Amount) values(\"%s\",%d)",username,totalAmount);
+        try {
+            ps = c.prepareStatement(s1);
+            ps.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
         }
         finally {
             try {
@@ -338,12 +428,35 @@ public class Api
             }
             catch (Exception e)
             {
-
+                System.out.println(e);
             }
         }
-
-
     }
+
+    public static void clearAll(String username)
+    {
+        PreparedStatement ps;
+        Connection c = connect();
+        String s1 = String.format("DELETE FROM Cart WHERE username =\"%s\"",username);
+        try {
+            ps = c.prepareStatement(s1);
+            ps.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        finally {
+            try {
+                c.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        }
+    }
+
 
     public static boolean addBalance(String username,int balance)
     {

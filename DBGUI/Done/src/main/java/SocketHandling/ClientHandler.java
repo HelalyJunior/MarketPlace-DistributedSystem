@@ -80,6 +80,40 @@ public class ClientHandler implements Runnable {
     public static void search () {
     }
 
+    public static void add (String[] request)
+    {
+        Api.AddToCart(request[1],Integer.valueOf(request[2]),Integer.valueOf(request[3]));
+    }
+
+    public void getCart(String[] request)
+    {
+        StringBuffer sb = new StringBuffer();
+        List<Map<String, String>> maps = Api.getCart(request[1]);
+        if(maps==null)
+        {
+            this.output.println("false");
+        }
+        else
+        {
+            for(int i=0;i<maps.size();i++)
+            {
+                StringBuffer s = new StringBuffer();
+                s.append(maps.get(i).get("ProductName")+"_");
+                s.append(maps.get(i).get("Price")+"_");
+                if(i==maps.size()-1)
+                {
+                    s.append(maps.get(i).get("amount"));
+                }
+                else
+                {
+                    s.append(maps.get(i).get("amount")+",");
+                }
+                sb.append(s);
+            }
+        }
+        this.output.println(sb);
+    }
+
     public void report()
     {
         StringBuffer sb = new StringBuffer();
@@ -105,6 +139,19 @@ public class ClientHandler implements Runnable {
         this.output.println(sb);
     }
 
+    public void purchase(String[] request)
+    {
+        boolean flag = Api.buy(request[1],Integer.valueOf(request[2]));
+        if(flag)
+        {
+            this.output.println("true");
+        }
+        else
+        {
+            this.output.println("false");
+        }
+    }
+
     public  void deposit (String[] request)
     {
         boolean b = Api.addBalance(request[1],Integer.valueOf(request[2]));
@@ -126,17 +173,17 @@ public class ClientHandler implements Runnable {
         maps.stream().flatMap(m->m.entrySet().stream()).forEach(e-> s.append(e.getValue()+"_"));
         this.output.println(s);
     }
-    public void buyItem(String[] request){
-        int id=Integer.parseInt(request[2]);
-        int q=Integer.parseInt(request[3]);
-        boolean flag= Api.buy(request[1],id,q);
-        if (flag){
-            this.output.println("true");
-        }
-        else {
-            this.output.println("false");
-        }
-    }
+//    public void buyItem(String[] request){
+//        int id=Integer.parseInt(request[2]);
+//        int q=Integer.parseInt(request[3]);
+//        boolean flag= Api.buy(request[1],id,q);
+//        if (flag){
+//            this.output.println("true");
+//        }
+//        else {
+//            this.output.println("false");
+//        }
+//    }
     @Override
     public void run() {
 
@@ -164,15 +211,28 @@ public class ClientHandler implements Runnable {
                     cart(request);
                 }
 
+                else if("getCart".equalsIgnoreCase(request[0]))
+                {
+                    getCart(request);
+                }
+
                 else if ("deposit".equalsIgnoreCase(request[0])){
                     deposit(request);
+                }
+
+                else if ("shop".equalsIgnoreCase(request[0])){
+                    report();
+                }
+
+                else if ("add".equalsIgnoreCase(request[0])){
+                    add(request);
                 }
 
                 else if ("returnInfo".equalsIgnoreCase(request[0])){
                     returnInfo(request);
                 }
                 else if ("buy".equalsIgnoreCase(request[0])){
-                    buyItem(request);
+                    purchase(request);
                 }
 
 //                if ("hello server".equals(line)) {
