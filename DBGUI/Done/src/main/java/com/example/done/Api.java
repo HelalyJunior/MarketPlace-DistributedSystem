@@ -180,12 +180,11 @@ public class Api
         }
     }
 
-    public static boolean Register (String username,String password){
-
+    public static boolean Register (String[] s){
         PreparedStatement ps;
         ResultSet rs;
         Connection c = connect();
-        String s1 = String.format("SELECT *  FROM CLIENTS WHERE username = \"%s\"",username);
+        String s1 = String.format("SELECT *  FROM CLIENTS WHERE username = \"%s\"",s[2]);
         System.out.println(s1);
 
         try {
@@ -195,7 +194,15 @@ public class Api
                 return false;
             }
             else {
-                String s2 = String.format("INSERT INTO CLIENTS values(\"%s\",\"%s\")",username,password);
+
+//                sb.append(FName_txt.getText()+"_");
+//                sb.append(LName_txt.getText()+"_");
+//                sb.append(Username_txt.getText()+"_");
+//                sb.append(address_txt.getText()+"_");
+//                sb.append(mob_txt.getText()+"_");
+//                sb.append(pw_txt.getText());
+//                HelloApplication.client.output.println(sb);
+                String s2 = String.format("INSERT INTO CLIENTS (FName, LName, Username,PW,Mobile,Address) values(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")",s[1],s[2],s[3],s[6],s[5],s[4]);
                 ps = c.prepareStatement(s2);
                 ps.executeUpdate();
                 return true;
@@ -336,6 +343,32 @@ public class Api
         }
 
 
+    }
+
+    public static boolean addBalance(String username,int balance)
+    {
+        PreparedStatement ps;
+        Connection c = connect();
+        String s1 = String.format("UPDATE Clients SET Balance= Balance+%d WHERE Username=\"%s\"",balance,username);
+        try {
+            ps = c.prepareStatement(s1);
+            ps.executeUpdate();
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+        finally {
+            try {
+                c.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        }
     }
 
 }

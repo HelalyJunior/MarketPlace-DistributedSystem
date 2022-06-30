@@ -30,15 +30,19 @@ public class Admin_Auth extends testjdbc {
 
 
     public void Generate_Pressed(javafx.event.ActionEvent event) throws IOException {
+        HelloApplication.client.output.println("report_");
 
-
-        root = FXMLLoader.load(getClass().getResource("Generate-Report.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-
+        String s = HelloApplication.client.input.readLine();
+        if( s.length()>0)
+        {
+            GenerateReport.FetchingData(s);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Generate-Report.fxml"));
+            root = loader.load();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void Top_Pressed(javafx.event.ActionEvent event) throws IOException{

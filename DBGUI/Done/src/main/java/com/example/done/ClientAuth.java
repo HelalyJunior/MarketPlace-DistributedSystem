@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -65,9 +66,20 @@ public class ClientAuth  {
         stage.show();
     }
 
-    public void display_pressed(ActionEvent event) {
-        int balance = Api.getBalance(username);
-        System.out.println(balance);
+    public void display_pressed(ActionEvent event) throws IOException {
+        HelloApplication.client.output.println("returnInfo_"+username);
+        String s = HelloApplication.client.input.readLine();
+        System.out.println(s);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewAccountInfo.fxml"));
+        root = loader.load();
+        ViewAccountInfo clientController = loader.getController();
+        String[] st = s.split("_");
+        clientController.fill(st[0],st[2],st[5],st[1],st[4]);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     public void deposit_pressed(ActionEvent event) throws IOException {

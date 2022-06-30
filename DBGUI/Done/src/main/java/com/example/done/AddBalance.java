@@ -50,10 +50,13 @@ public class AddBalance {
     }
 
     @FXML
-    void deposit(ActionEvent event) {
+    void deposit(ActionEvent event) throws IOException {
         int moneyEntered = Integer.valueOf(money.getText());
-        System.out.println(moneyEntered + "_" + username);
-        status.setText("SUCCESS");
+        HelloApplication.client.output.println("deposit_"+username+"_"+moneyEntered);
+        if ( HelloApplication.client.input.readLine().equals("true"))
+            status.setText("SUCCESS");
+        else
+            status.setText("FAILED");
     }
 
 }

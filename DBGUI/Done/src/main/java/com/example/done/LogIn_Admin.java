@@ -47,20 +47,24 @@ public class LogIn_Admin extends testjdbc{
         stage.show();
     }
 
-    public void Login_Pressed(javafx.event.ActionEvent event) throws IOException, SQLException {
-            String password = Api.getPassword("admin",Username_txt.getText().trim());
-            if ( password.equals(Password_txt.getText().trim()))
-            {
-                root = FXMLLoader.load(getClass().getResource("Admin-Auth.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-            else
-            {
-                AlertBox.display("Error","Wrong Password!");
-                Password_txt.setText("");
-            }
+    public void Login_Pressed(javafx.event.ActionEvent event) throws IOException {
+        HelloApplication.client.output.println("loginAdmin_"+Username_txt.getText().trim()+"_"+Password_txt.getText().trim());
+
+        //String password = Api.getPassword("client",Username_txt.getText().trim());
+
+        if ( HelloApplication.client.input.readLine().equals("true"))
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin-Auth.fxml"));
+            root = loader.load();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            AlertBox.display("Error","Wrong Password! ");
+            Password_txt.setText("");
+        }
         }
 }

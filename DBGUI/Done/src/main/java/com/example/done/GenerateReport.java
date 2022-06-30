@@ -39,7 +39,7 @@ public class GenerateReport implements Initializable {
     @FXML
     private TableView<Products> table;
 
-    static ObservableList<Products> data;
+    public static ObservableList<Products> data;
 
     private Stage stage;
 
@@ -56,22 +56,24 @@ public class GenerateReport implements Initializable {
         stage.show();
     }
 
-    public static void FetchingData()
+    public static void FetchingData(String s)
     {
-        List<Map<String, String>> rs=Api.getAllItems();
+//        new Products(rs.get(i).get("ProductName"), Integer.valueOf(rs.get(i).get("Price")),
+//                Integer.valueOf(rs.get(i).get("Stock")), Integer.valueOf(rs.get(i).get("Sold")), total_income)
+//
+//        int total_income = (Integer.valueOf(rs.get(i).get("Price")) * Integer.valueOf(rs.get(i).get("Sold")));
         data =  FXCollections.observableArrayList();
-
-            for (int i=0;i< rs.size();i++) {
-                int total_income = (Integer.valueOf(rs.get(i).get("Price")) * Integer.valueOf(rs.get(i).get("Sold")));
-                data.add(new Products(rs.get(i).get("ProductName"), Integer.valueOf(rs.get(i).get("Price")),
-                        Integer.valueOf(rs.get(i).get("Stock")), Integer.valueOf(rs.get(i).get("Sold")), total_income));
-            }
-
+        String[] sb = s.split(",");
+        for(int i=0;i<sb.length;i++)
+        {
+            String[] st = sb[i].split("_");
+            int total_income = (Integer.valueOf(st[2]) * Integer.valueOf(st[4]));
+            data.add(new Products(st[1],Integer.valueOf(st[2]),Integer.valueOf(st[3]),Integer.valueOf(st[4]),total_income));
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FetchingData();
         income.setCellValueFactory(new PropertyValueFactory<>("Income"));
         name.setCellValueFactory(new PropertyValueFactory<>("Product_name"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));

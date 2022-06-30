@@ -7,24 +7,24 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="589.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.CartView">
+<AnchorPane prefHeight="589.0" prefWidth="874.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.CartView">
    <children>
       <SplitPane dividerPositions="0.724829931972789" orientation="VERTICAL" prefHeight="589.0" prefWidth="875.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="874.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="874.0" style="-fx-background-color: white;">
                <children>
-                  <HBox layoutX="67.0" layoutY="14.0" prefHeight="48.0" prefWidth="550.0">
+                  <HBox layoutX="67.0" layoutY="14.0" prefHeight="48.0" prefWidth="550.0" style="-fx-background-color: white;">
                      <children>
-                        <Label alignment="TOP_LEFT" prefHeight="48.0" prefWidth="588.0" text="Current Shopping Cart">
+                        <Label alignment="TOP_LEFT" prefHeight="48.0" prefWidth="588.0" text="Current Shopping Cart" textFill="#6c27e1">
                            <font>
-                              <Font name="Berlin Sans FB" size="37.0" />
+                              <Font name="Alef Regular" size="33.0" />
                            </font>
                         </Label>
                      </children>
@@ -32,7 +32,7 @@
                   <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
                   <ScrollPane layoutX="2.0" layoutY="70.0" prefHeight="376.0" prefWidth="866.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="864.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="864.0" style="-fx-background-color: white;">
                            <children>
                               <TableView prefHeight="376.0" prefWidth="866.0">
                                 <columns>
@@ -46,54 +46,77 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
+                  <Button fx:id="back" layoutX="626.0" layoutY="12.0" mnemonicParsing="false" onAction="#back" prefHeight="52.0" prefWidth="182.0" style="-fx-background-color: #793bff;" text="Back" textFill="WHITE">
+                     <font>
+                        <Font name="Alef Regular" size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Button>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="81.0" prefWidth="874.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="81.0" prefWidth="874.0" style="-fx-background-color: white;">
                <children>
                   <HBox layoutX="-2.0" prefHeight="134.0" prefWidth="874.0">
                      <children>
-                        <VBox prefHeight="134.0" prefWidth="470.0">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@IMG/undraw_empty_cart_co35.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="153.0" prefWidth="618.0">
                            <children>
-                              <HBox prefHeight="67.0" prefWidth="263.0">
+                              <HBox prefHeight="69.0" prefWidth="412.0">
                                  <children>
-                                    <Label prefHeight="51.0" prefWidth="206.0" text="Delievery address:">
+                                    <Label prefHeight="51.0" prefWidth="206.0" text="Delievery address:" textFill="#6629e1">
                                        <font>
-                                          <Font name="Bodoni MT" size="22.0" />
+                                          <Font name="Alef Regular" size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label prefHeight="51.0" prefWidth="218.0" text="address">
+                                       <font>
+                                          <Font name="Alef Regular" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="51.0" prefWidth="237.0" text="address">
+                                    <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="182.0" style="-fx-background-color: #793bff;" text="Clear" textFill="WHITE">
                                        <font>
-                                          <Font name="Bodoni MT" size="22.0" />
+                                          <Font name="Alef Regular" size="22.0" />
                                        </font>
-                                    </Label>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                               </HBox>
                               <HBox prefHeight="66.0" prefWidth="368.0">
                                  <children>
-                                    <Label prefHeight="84.0" prefWidth="175.0" text="Total price:">
+                                    <Label prefHeight="84.0" prefWidth="175.0" text="Total price:" textFill="#6629e1">
                                        <font>
-                                          <Font name="Bodoni MT" size="22.0" />
+                                          <Font name="Alef Regular" size="20.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
                                     </Label>
                                     <Label prefHeight="85.0" prefWidth="308.0" text="500$">
                                        <font>
-                                          <Font name="Bodoni MT" size="22.0" />
+                                          <Font name="Alef Regular" size="20.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets left="-20.0" />
+                                       </HBox.margin>
                                     </Label>
+                                    <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="201.0" style="-fx-background-color: #793bff;" text="Purchase " textFill="WHITE">
+                                       <font>
+                                          <Font name="Alef Regular" size="22.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </HBox>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="134.0" prefWidth="405.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="178.0" text="Purchase ">
-                                 <VBox.margin>
-                                    <Insets bottom="50.0" left="130.0" right="50.0" top="50.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Bodoni MT" size="26.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </VBox>
                      </children>
