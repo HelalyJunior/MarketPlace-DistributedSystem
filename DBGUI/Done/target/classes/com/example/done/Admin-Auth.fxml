@@ -17,5 +17,10 @@
          <font>
             <Font name="Alef Regular" size="17.0" />
          </font></Button>
+      <Button layoutX="161.0" layoutY="301.0" mnemonicParsing="false" onAction="#Additems_pressed" prefHeight="54.0" prefWidth="154.0" style="-fx-background-color: #793bff;" text="Add Items" textFill="WHITE">
+         <font>
+            <Font name="Alef Regular" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

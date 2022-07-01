@@ -1,11 +1,5 @@
 package com.example.done;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -555,19 +549,21 @@ return true;
         }
     }
 
-    public static void addProducts(int ID ,String ProductName,int Price , int Stock , int Sold ,String image,String Category)
+    public static boolean addProducts(int ID ,String ProductName,int Price , int Stock ,String Category)
     {
         PreparedStatement ps;
         Connection c = connect();
-        String s1 = String.format("INSERT INTO Products values(%d,\"%s\",%d,%d,%d,\"%s\",\"%s\")",ID,ProductName,Price,Stock,Sold,image,Category);
+        String s1 = String.format("INSERT INTO Products values(%d,\"%s\",%d,%d,%d,\"%s\",\"%s\")",ID,ProductName,Price,Stock,0,null,Category);
         System.out.println(s1);
         try {
             ps = c.prepareStatement(s1);
             ps.executeUpdate();
+            return true;
         }
         catch (Exception e)
         {
             System.out.println(e);
+            return false;
         }
         finally {
             try {

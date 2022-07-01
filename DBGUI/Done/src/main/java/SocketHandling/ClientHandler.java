@@ -250,11 +250,18 @@ public class ClientHandler implements Runnable {
     }
 
     public void addProductsAdmin(String[] request){
-        int id=Integer.parseInt(request[1]);
-        int price=Integer.parseInt(request[3]);
-        int stock=Integer.parseInt(request[4]);
-        int sold=Integer.parseInt(request[5]);
-        Api.addProducts(id,request[2],price,stock,sold,request[6],request[7]);
+        int id=Integer.valueOf(request[1]);
+        int price=Integer.valueOf(request[3]);
+        int stock=Integer.valueOf(request[4]);
+        boolean flag = Api.addProducts(id,request[2],price,stock, request[5]);
+        if ( flag){
+            this.output.println("true");
+        }
+
+        else{
+            this.output.println("false");
+        }
+
     }
 
 //    public void buyItem(String[] request){
@@ -276,7 +283,7 @@ public class ClientHandler implements Runnable {
 
         try {
             while (true) {
-//                while(!input.ready()){}
+//              while(!input.ready()){}
                 String line = input.readLine();
                 String[] request = line.split("_");
 
