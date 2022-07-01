@@ -50,6 +50,7 @@ public class SignUp extends testjdbc{
     private Parent root;
 
     public void Signup_Pressed(javafx.event.ActionEvent event) throws IOException {
+
         if (Username_txt.getText().equals("") || FName_txt.getText().equals("") || LName_txt.getText().equals("")||address_txt.getText().equals("")||mob_txt.getText().equals("") || pw_txt.getText().equals(""))
         {
             AlertBox.display("Error!","One of the required fields isn't filled!, Please fill it");

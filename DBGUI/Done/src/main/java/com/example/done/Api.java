@@ -555,4 +555,29 @@ return true;
         }
     }
 
+    public static void addProducts(int ID ,String ProductName,int Price , int Stock , int Sold ,String image,String Category)
+    {
+        PreparedStatement ps;
+        Connection c = connect();
+        String s1 = String.format("INSERT INTO Products values(%d,\"%s\",%d,%d,%d,\"%s\",\"%s\")",ID,ProductName,Price,Stock,Sold,image,Category);
+        System.out.println(s1);
+        try {
+            ps = c.prepareStatement(s1);
+            ps.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        finally {
+            try {
+                c.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        }
+    }
+
 }

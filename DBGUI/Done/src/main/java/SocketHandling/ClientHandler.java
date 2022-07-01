@@ -246,7 +246,17 @@ public class ClientHandler implements Runnable {
             sb.append("NO SUCH ITEM");
         }
         this.output.println(sb);
+
     }
+
+    public void addProductsAdmin(String[] request){
+        int id=Integer.parseInt(request[1]);
+        int price=Integer.parseInt(request[3]);
+        int stock=Integer.parseInt(request[4]);
+        int sold=Integer.parseInt(request[5]);
+        Api.addProducts(id,request[2],price,stock,sold,request[6],request[7]);
+    }
+
 //    public void buyItem(String[] request){
 //        int id=Integer.parseInt(request[2]);
 //        int q=Integer.parseInt(request[3]);
@@ -258,6 +268,9 @@ public class ClientHandler implements Runnable {
 //            this.output.println("false");
 //        }
 //    }
+
+
+
     @Override
     public void run() {
 
@@ -320,6 +333,9 @@ public class ClientHandler implements Runnable {
                 }
                 else if ("search".equalsIgnoreCase(request[0])){
                     search(request);
+                }
+                else if ("addProducts".equalsIgnoreCase(request[0])){
+                    addProductsAdmin(request);
                 }
 
 //                if ("hello server".equals(line)) {
