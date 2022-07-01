@@ -50,22 +50,28 @@ public class SignUp extends testjdbc{
     private Parent root;
 
     public void Signup_Pressed(javafx.event.ActionEvent event) throws IOException {
-        StringBuffer sb = new StringBuffer();
-        sb.append("register"+"_");
-        sb.append(FName_txt.getText()+"_");
-        sb.append(LName_txt.getText()+"_");
-        sb.append(Username_txt.getText()+"_");
-        sb.append(address_txt.getText()+"_");
-        sb.append(mob_txt.getText()+"_");
-        sb.append(pw_txt.getText());
-        HelloApplication.client.output.println(sb);
-        if(HelloApplication.client.input.readLine().equals("true"))
+        if (Username_txt.getText().equals("") || FName_txt.getText().equals("") || LName_txt.getText().equals("")||address_txt.getText().equals("")||mob_txt.getText().equals("") || pw_txt.getText().equals(""))
         {
-            success.setText("Success");
+            AlertBox.display("Error!","One of the required fields isn't filled!, Please fill it");
         }
-        else
-        {
-            success.setText("Failed");
+        else {
+            StringBuffer sb = new StringBuffer();
+            sb.append("register" + "_");
+            sb.append(FName_txt.getText() + "_");
+            sb.append(LName_txt.getText() + "_");
+            sb.append(Username_txt.getText() + "_");
+            sb.append(address_txt.getText() + "_");
+            sb.append(mob_txt.getText() + "_");
+            sb.append(pw_txt.getText());
+            HelloApplication.client.output.println(sb);
+            if (HelloApplication.client.input.readLine().equals("true")) {
+                success.setText("Success");
+            } else {
+                success.setText("Failed");
+                AlertBox.display("Error", "Username already Exicts!");
+                Username_txt.setText("");
+
+            }
         }
     }
 
