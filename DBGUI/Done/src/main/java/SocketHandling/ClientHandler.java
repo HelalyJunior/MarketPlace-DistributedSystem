@@ -177,7 +177,7 @@ public class ClientHandler implements Runnable {
         this.output.println(sb);
     }
 
-    public void purchase(String[] request)
+    public synchronized void purchase(String[] request)
     {
         boolean flag = Api.buy(request[1],Integer.valueOf(request[2]));
         if(flag)
