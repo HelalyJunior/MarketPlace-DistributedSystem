@@ -13,11 +13,7 @@
             <Image url="@IMG/undraw_Select_option_re_u4qn.png" />
          </image>
       </ImageView>
-      <Button fx:id="Generate_btn" layoutX="165.0" layoutY="175.0" mnemonicParsing="false" onAction="#Generate_Pressed" prefHeight="54.0" prefWidth="154.0" style="-fx-background-color: #793bff;" text="Generate Report" textFill="WHITE">
-         <font>
-            <Font name="Alef Regular" size="17.0" />
-         </font></Button>
-      <Button fx:id="Top_btn" layoutX="177.0" layoutY="240.0" mnemonicParsing="false" onAction="#Top_Pressed" prefHeight="46.0" prefWidth="129.0" style="-fx-background-color: #793bff;" text="Top Clients" textFill="WHITE">
+      <Button fx:id="Generate_btn" layoutX="161.0" layoutY="208.0" mnemonicParsing="false" onAction="#Generate_Pressed" prefHeight="54.0" prefWidth="154.0" style="-fx-background-color: #793bff;" text="Generate Report" textFill="WHITE">
          <font>
             <Font name="Alef Regular" size="17.0" />
          </font></Button>

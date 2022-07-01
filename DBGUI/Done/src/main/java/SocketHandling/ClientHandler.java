@@ -87,6 +87,11 @@ public class ClientHandler implements Runnable {
         Api.AddToCart(request[1],Integer.valueOf(request[2]),Integer.valueOf(request[3]));
     }
 
+
+    public void clear(String[] request)
+    {
+        Api.clearAll(request[1]);
+    }
     public void getCart(String[] request)
     {
         StringBuffer sb = new StringBuffer();
@@ -114,6 +119,37 @@ public class ClientHandler implements Runnable {
             }
         }
         this.output.println(sb);
+    }
+
+    public void order(String[] request)
+    {
+        StringBuffer sb = new StringBuffer();
+        List<Map<String, String>> maps =Api.getOrders(request[1]);
+        if(maps.size()==0)
+        {
+            this.output.println("false");
+        }
+        else
+        {
+            for(int i=0;i<maps.size();i++)
+            {
+                StringBuffer s = new StringBuffer();
+                s.append(maps.get(i).get("ClientName")+"_");
+                s.append(maps.get(i).get("Total_Amount")+"_");
+                if(i==maps.size()-1)
+                {
+                    s.append(maps.get(i).get("OrderId"));
+                }
+                else
+                {
+                    s.append(maps.get(i).get("OrderId")+",");
+                }
+                sb.append(s);
+            }
+            System.out.println(sb);
+            this.output.println(sb);
+        }
+
     }
 
     public void report()
@@ -176,21 +212,40 @@ public class ClientHandler implements Runnable {
         this.output.println(s);
     }
     public void search(String[] request){
-        List<Map<String, String>> maps= Api.Search(request[1]);
-        StringBuffer s = new StringBuffer();
+        List<Map<String, String>> maps = new ArrayList<Map<String, String>>();
+        if(request.length==1)
+        {
+            maps=Api.getAllItems();
+        }
+        else
+        {
+            maps= Api.Search(request[1]);
+        }
+        StringBuffer sb = new StringBuffer();
         if (!maps.isEmpty()) {
-            maps.stream().flatMap(m -> m.entrySet().stream()).forEach(e -> s.append(e.getValue() + "_"));
-//        if (!items.isEmpty()) {
-//            for (int i = 0; i < items.size(); i++) {
-//                s.append(items.get(i) + "_");
-//            }
-//        }
+            for(int i=0;i<maps.size();i++)
+            {
+                StringBuffer s = new StringBuffer();
+                s.append(maps.get(i).get("Id")+"_");
+                s.append(maps.get(i).get("ProductName")+"_");
+                s.append(maps.get(i).get("Price")+"_");
+                s.append(maps.get(i).get("Stock")+"_");
+                if(i==maps.size()-1)
+                {
+                    s.append(maps.get(i).get("Sold"));
+                }
+                else
+                {
+                    s.append(maps.get(i).get("Sold")+",");
+                }
+                sb.append(s);
+            };
         }
         // in case of no item found !!
         else {
-            s.append("NO SUCH ITEM");
+            sb.append("NO SUCH ITEM");
         }
-          this.output.println(s);
+        this.output.println(sb);
     }
 //    public void buyItem(String[] request){
 //        int id=Integer.parseInt(request[2]);
@@ -211,8 +266,18 @@ public class ClientHandler implements Runnable {
 //                while(!input.ready()){}
                 String line = input.readLine();
                 String[] request = line.split("_");
+
+
+                if ("orders".equalsIgnoreCase(request[0])) {
+                    order(request);
+                }
+
                 if ("register".equalsIgnoreCase(request[0])) {
                     register(request);
+                }
+
+                if ("clear".equalsIgnoreCase(request[0])) {
+                    clear(request);
                 }
 
                 if ("report".equalsIgnoreCase(request[0])) {

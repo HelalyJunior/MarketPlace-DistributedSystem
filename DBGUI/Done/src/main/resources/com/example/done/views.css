@@ -21,11 +21,11 @@
 }
 
 .choses-product-card{
-    -fx-background-color: #F16C31;
+    -fx-background-color: #793bff;
     -fx-background-radius: 30;
 }
 
 .product-item{
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #793bff;
     -fx-background-radius: 30;
 }

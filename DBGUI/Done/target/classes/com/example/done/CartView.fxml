@@ -69,7 +69,7 @@
                            <children>
                               <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="412.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="182.0" style="-fx-background-color: #793bff;" text="Clear" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#clearCart" prefHeight="52.0" prefWidth="182.0" style="-fx-background-color: #793bff;" text="Clear" textFill="WHITE">
                                        <font>
                                           <Font name="Alef Regular" size="22.0" />
                                        </font>

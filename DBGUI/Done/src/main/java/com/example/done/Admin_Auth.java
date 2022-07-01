@@ -45,12 +45,4 @@ public class Admin_Auth extends testjdbc {
         }
     }
 
-    public void Top_Pressed(javafx.event.ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("Generate-Report.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 }

@@ -410,6 +410,43 @@ return true;
     }
 
 
+    public static List<Map<String, String>> getOrders(String username)
+    {
+        PreparedStatement ps;
+        ResultSet rs=null;
+        Connection c = connect();
+        String s1 =String.format("SELECT * FROM Orders Where ClientName=\"%s\"",username);
+        try {
+            ps = c.prepareStatement(s1);
+            rs = ps.executeQuery();
+            List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+            ResultSetMetaData meta = rs.getMetaData();
+            while (rs.next()) {
+                Map map = new HashMap();
+                for (int i = 1; i <= meta.getColumnCount(); i++) {
+                    String key = meta.getColumnName(i);
+                    String value = rs.getString(key);
+                    map.put(key, value);
+                }
+                list.add(map);
+            }
+            return list;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+        finally {
+            try {
+                c.close();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+    }
+
     public static void updateOrders(String username,int totalAmount)
     {
         PreparedStatement ps;
@@ -490,7 +527,7 @@ return true;
         PreparedStatement ps;
         ResultSet rs;
         Connection c = connect();
-        String s1 = String.format("SELECT * FROM PRODUCTS WHERE Category = \"%s\" OR ProductName=\"%s\"", searchItem, searchItem);
+        String s1 = String.format("SELECT * FROM PRODUCTS WHERE Category like \"%s%%\" OR ProductName like \"%s%%\"", searchItem, searchItem);
         System.out.println(s1);
         try {
             ps = c.prepareStatement(s1);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,21 +16,27 @@
          <children>
             <HBox prefHeight="58.0" prefWidth="226.0">
                <children>
-                  <Label fx:id="name_lbl" prefHeight="58.0" prefWidth="194.0" text=" Product">
+                  <Label fx:id="name_lbl" prefHeight="58.0" prefWidth="194.0" text=" Product" textFill="WHITE">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Alef Regular" size="25.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Label>
-                  <Label fx:id="price_lbl" prefHeight="61.0" prefWidth="98.0" text="Price">
+                  <Label fx:id="price_lbl" prefHeight="58.0" prefWidth="119.0" text="Price" textFill="WHITE">
                      <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Alef Regular" size="25.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets right="7.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
             <ImageView fx:id="img" fitHeight="115.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@IMG/eggs_110803370_1000.jpg" />
+                  <Image url="@IMG/shopping-basket.png" />
                </image>
             </ImageView>
          </children>

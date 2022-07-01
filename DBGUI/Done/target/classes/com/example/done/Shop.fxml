@@ -17,32 +17,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.Shop">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.done.Shop">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="yarab" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@views.css" BorderPane.alignment="CENTER">
+            <VBox fx:id="vbox07" prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@views.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" text="Products">
+                        <Label alignment="CENTER" text="Products" textFill="#5f0ed9">
                            <font>
-                              <Font name="Book Antiqua Bold" size="40.0" />
+                              <Font name="Alef Bold" size="40.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@views.css">
+                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="375.0" stylesheets="@views.css">
                      <VBox.margin>
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField prefHeight="40.0" prefWidth="245.0" promptText="Search for Items here!" styleClass="transparent" stylesheets="@views.css">
+                        <TextField fx:id="searchText" prefHeight="40.0" prefWidth="245.0" promptText="Search for Items here!" styleClass="transparent" stylesheets="@views.css">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
+                           <HBox.margin>
+                              <Insets bottom="20.0" />
+                           </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" stylesheets="@views.css" text="Search" textFill="#f2f1f1" />
+                        <Button fx:id="searchItem" mnemonicParsing="false" onAction="#search_pressed" prefHeight="34.0" prefWidth="70.0" style="-fx-background-color: #793bff;" styleClass="search-button" stylesheets="@views.css" text="Search" textFill="WHITE">
+                           <font>
+                              <Font name="Alef Regular" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin></Button>
                      </children>
                      <styleClass>
                         <String fx:value="search-box" />
@@ -50,19 +59,19 @@
                      </styleClass>
                   </HBox>
                   <Pane prefHeight="20.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenItemCard" alignment="CENTER" prefHeight="570.0" prefWidth="100.0" styleClass="choses-product-card" stylesheets="@views.css">
+                  <VBox fx:id="chosenItemCard" alignment="CENTER" prefHeight="527.0" prefWidth="356.0" styleClass="choses-product-card" stylesheets="@views.css">
                      <VBox.margin>
                         <Insets bottom="10.0" left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
                         <HBox prefHeight="53.0" prefWidth="335.0">
                            <children>
-                              <Label fx:id="ProductName_lbl" prefHeight="50.0" prefWidth="282.0" text="  Tea" textFill="WHITE">
+                              <Label fx:id="ProductName_lbl" prefHeight="42.0" prefWidth="209.0" text="  Tea" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Light" size="36.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets bottom="50.0" />
+                                    <Insets bottom="50.0" left="10.0" />
                                  </HBox.margin>
                               </Label>
                               <Label fx:id="ProductPrice_lbl" prefHeight="50.0" prefWidth="199.0" text="£20" textFill="WHITE">
@@ -76,14 +85,14 @@
                            </VBox.margin>
                         </HBox>
                         <ImageView fx:id="Product_img" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@IMG/6221155033567_lipton_yellow_label_black_tea_bags_100s-1639022-jpg.jpg" />
-                           </image>
                            <VBox.margin>
                               <Insets bottom="35.0" />
                            </VBox.margin>
+                           <image>
+                              <Image url="@IMG/shopping-basket.png" />
+                           </image>
                         </ImageView>
-                        <Button fx:id="add" mnemonicParsing="false" onAction="#add_pressed" prefHeight="50.0" prefWidth="374.0" text="Add to Cart!" />
+                        <Button fx:id="add" mnemonicParsing="false" onAction="#add_pressed" prefHeight="50.0" prefWidth="214.0" text="Add to Cart!" />
                         <HBox alignment="CENTER" prefHeight="54.0" prefWidth="335.0">
                            <VBox.margin>
                               <Insets top="20.0" />
@@ -101,21 +110,16 @@
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="Vbox77" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="200.0">
+                  <HBox fx:id="RightCorner2" alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="462.0" style="-fx-background-color: white;">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                      <children>
-                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="266.0" text="My  Account" textAlignment="RIGHT">
-                           <font>
-                              <Font name="Calibri Light" size="24.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="cart" mnemonicParsing="false" onAction="#cart_pressed">
+                        <Button fx:id="cart" mnemonicParsing="false" onAction="#cart_pressed" style="-fx-background-color: white;">
                            <graphic>
-                              <ImageView fitHeight="56.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="cartButton" fitHeight="56.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@IMG/download.jpg" />
                                  </image>
@@ -124,10 +128,10 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="rightCorner" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox fx:id="Hbox77" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll_pane" prefHeight="645.0" prefWidth="873.0" styleClass="transparent" stylesheets="@views.css">
+                        <ScrollPane fx:id="scroll_pane" prefHeight="534.0" prefWidth="767.0" style="-fx-background: white;" styleClass="transparent" stylesheets="@views.css">
                            <content>
                               <GridPane fx:id="grid_pane" prefHeight="40.0" prefWidth="73.0">
                                  <rowConstraints>

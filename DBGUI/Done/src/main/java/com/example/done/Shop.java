@@ -38,6 +38,9 @@ public class Shop implements Initializable
     public Product_Card chosenCard = new Product_Card();
 
     @FXML
+    private TextField searchText;
+
+    @FXML
     private Label ProductName_lbl;
 
     @FXML
@@ -67,10 +70,11 @@ public class Shop implements Initializable
     {
         quantity.setText("0");
         chosenCard=p1;
+        p1.setImgSrc("DBGUI/Done/src/main/resources/com/example/done/shopping-basket.png");
         ProductName_lbl.setText(p1.getName());
         ProductPrice_lbl.setText(""+p1.getPrice());
-        chosenItemCard.setStyle("-fx-background-color: #" + p1.getColor() + ";\n" +
-                "    -fx-background-radius: 30;");
+//        chosenItemCard.setStyle("-fx-background-color: #" + p1.getColor() + ";\n" +
+//                "    -fx-background-radius: 30;");
         //Product_img.setImage(new Image(getClass().getResourceAsStream(p1.getImgSrc())));
 
 
@@ -78,6 +82,7 @@ public class Shop implements Initializable
 
     public static void getData(String s )
     {
+        cards.clear();
         String[] sb = s.split(",");
         List<Product_Card> cc = new ArrayList<>();
         Product_Card card;
@@ -89,12 +94,13 @@ public class Shop implements Initializable
             card.setName(st[1]);
             card.setPrice(Integer.valueOf(st[2]));
             card.setStock(Integer.valueOf(st[3]));
-            card.setImgSrc("DBGUI/Done/src/main/resources/com/example/done/IMG/71Js4WUmcRL._SL1500_.jpg");
+            card.setImgSrc("DBGUI/Done/src/main/resources/com/example/done/shopping-basket.png");
             card.setColor("6A7324");
             cc.add(card);
         }
         cards.addAll(cc);
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -222,5 +228,25 @@ public class Shop implements Initializable
             AlertBox.display("Error","Quantity exceeded Stock ! ");
 
         }
+    }
+
+    public void search_pressed(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Shop.fxml"));
+        HelloApplication.client.output.println("search_"+searchText.getText());
+        String s = HelloApplication.client.input.readLine();
+        if(s.equals("NO SUCH ITEM"))
+        {
+            AlertBox.display("Error","Invalid search");
+            return;
+        }
+        getData(s);
+        root = loader.load();
+        Shop clientController = loader.getController();
+        clientController.username=username;
+        searchText.setText("");
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

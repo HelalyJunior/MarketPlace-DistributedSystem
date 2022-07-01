@@ -114,4 +114,17 @@ public class CartView implements Initializable {
             }
         }
     }
+
+    public void clearCart(ActionEvent event) throws IOException {
+        HelloApplication.client.output.println("clear_"+username);
+        total=0;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Shop.fxml"));
+        root = loader.load();
+        Shop clientController = loader.getController();
+        clientController.username=username;
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
