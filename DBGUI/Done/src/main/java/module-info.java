@@ -1,4 +1,4 @@
-module com.example.done {
+module com.example.done{
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -12,6 +12,6 @@ module com.example.done {
     requires java.desktop;
     requires java.sql;
 
-    opens com.example.done to javafx.fxml;
     exports com.example.done;
+    opens com.example.done to javafx.fxml, javafx.graphics;
 }
